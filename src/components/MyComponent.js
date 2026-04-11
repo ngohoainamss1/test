@@ -2,7 +2,7 @@
 // function component
 
 import React from "react";
-import UserInfor from "./Userinfor";
+import AddUserInfor from "./AddUserinfor";
 import DisplayInfor from "./Display";
 
 class MyComponent extends React.Component {
@@ -15,18 +15,44 @@ class MyComponent extends React.Component {
         ]
     }
 
+    handleAddUser = (userObject) => {
+        console.log("check: ", userObject)
+
+        // let listuserclone = this.state.listuser;
+        // listuserclone.unshift(userObject)
+        // this.setState({
+        //     listuser: listuserclone
+        // })
+
+        this.setState({
+            listuser: [userObject, ...this.state.listuser]
+        })
+    }
+
+    xoa = (userId) => {
+        let listuserclone = [...this, this.state.listuser]
+    }
+
     // JSX
     render() {
         return (
-            <div>
-                <UserInfor></UserInfor>
-                <DisplayInfor
-                    listuser={this.state.listuser}
-                    user={this.state.listuser}
+            <>
+                <div className="a">
+                    <AddUserInfor
+                        handleAddUser={this.handleAddUser}
+                    ></AddUserInfor>
+                    <DisplayInfor
+                        listuser={this.state.listuser}
+                        user={this.state.listuser}
+                    >
+                    </DisplayInfor>
+                </div>
 
-                >
-                </DisplayInfor>
-            </div>
+                <div className="b">
+
+                </div>
+            </>
+
         );
     }
 }
